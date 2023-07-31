@@ -1,0 +1,13 @@
+* {
+    background: #e0e0e0;
+}
+
+/* 
+    id: #
+    class: .
+ */
+div.box {
+    width: 400px;
+    height: 300px;
+    border: 5px double blue;
+}
