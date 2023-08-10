@@ -1,0 +1,18 @@
+.accordion {
+    background-color: lightblue;
+    padding: 5vh 5vw;
+    width: 100%;
+    border: 0;
+    cursor: pointer;
+}
+
+.panel {
+    padding: 0 2vw;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.active, .accordion:hover {
+    background-color: lightskyblue;
+}
