@@ -1,0 +1,26 @@
+artist:
+  artist-alias1: &newjeans
+    name: NewJeans
+    songs:
+      - ETA
+      - ASAP
+      - Super Shy
+      - New Jeans
+      - Cool With You
+  artist-alias2: &exo
+    name: EXO
+    songs:
+      - Cream Soda
+      - Don't fight the feeling
+      - Lotto
+      - Love shot
+
+students:
+  - name: chaeyun
+    major: IT Engineering
+    age: 26
+    favorites: [*newjeans]
+  - name: seorim
+    major: library and information science
+    age: 24
+    favorites: [*newjeans, *exo]
