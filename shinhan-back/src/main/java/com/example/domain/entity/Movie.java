@@ -1,4 +1,6 @@
-package com.example.domain;
+package com.example.domain.entity;
+
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,4 +14,5 @@ public class Movie {
 	private long id;
 	private String name;
 	private Integer productionYear;
+	private LocalDateTime createAt;
 }

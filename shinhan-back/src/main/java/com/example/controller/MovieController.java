@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.domain.Movie;
+import com.example.common.Response;
+import com.example.domain.entity.Movie;
 import com.example.domain.request.MovieRequest;
+import com.example.domain.response.MovieResponse;
 import com.example.service.MovieService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -27,8 +29,8 @@ public class MovieController {
 	private final MovieService movieService;
 
 	@GetMapping("/v1/movies")
-	public List<Movie> getMovies() {
-		return movieService.getMovies();
+	public Response<List<MovieResponse>> getMovies() {
+		return Response.of(movieService.getMovies());
 	}
 
 	@GetMapping("/v1/movies/{movieId}")

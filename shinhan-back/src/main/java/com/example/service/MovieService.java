@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +8,9 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
 
-import com.example.domain.Movie;
+import com.example.domain.entity.Movie;
 import com.example.domain.request.MovieRequest;
+import com.example.domain.response.MovieResponse;
 
 @Service
 public class MovieService {
@@ -18,14 +20,24 @@ public class MovieService {
 	@PostConstruct
 	public void init() {
 		movies.addAll(List.of(
-			new Movie(1, "토이 스토리 3", 2010),
-			new Movie(2, "인셉션", 2010),
-			new Movie(3, "해리 포터와 마법사의 돌", 2001)
+			new Movie(1, "토이 스토리 3", 2010, LocalDateTime.now()),
+			new Movie(2, "인셉션", 2010, LocalDateTime.now()),
+			new Movie(3, "해리 포터와 마법사의 돌", 2001, LocalDateTime.now())
 		));
 	}
 
-	public List<Movie> getMovies() {
-		return movies;
+	public List<MovieResponse> getMovies() {
+		return movies.stream()
+			.map(movie -> MovieResponse.of(movie))
+			.toList();
+
+		// return movies.stream()
+		// 	.map(movie -> MovieResponse.builder()
+		// 		.id(movie.getId())
+		// 		.name(movie.getName())
+		// 		.productionYear(movie.getProductionYear())
+		// 		.build())
+		// 	.toList();
 	}
 
 	public Movie getMovie(long movieId) {
@@ -39,7 +51,8 @@ public class MovieService {
 		Movie movie = new Movie(
 			movies.size() + 1,
 			movieRequest.getName(),
-			movieRequest.getProductionYear()
+			movieRequest.getProductionYear(),
+			LocalDateTime.now()
 		);
 		movies.add(movie);
 	}
