@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +18,15 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("/api")
 public class MovieController {
 
+	@Deprecated(since = "v2 사용하세요.")
 	@GetMapping("/v1/movies")
 	public String get() {
 		return "test";
+	}
+
+	@GetMapping("/v2/movies")
+	public List<String> getmovies() {
+		return List.of("test");
 	}
 
 	@GetMapping("/v1/movies/{movieId}")
