@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class Chicken implements Ingredient {
-
+public class Pork implements Ingredient {
+	
 	private final String name;
 }
