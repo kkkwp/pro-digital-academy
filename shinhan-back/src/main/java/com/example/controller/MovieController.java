@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,9 +21,10 @@ public class MovieController {
 
 	@GetMapping("/movies/{movieId}")
 	public String getMovie(
-		@PathVariable(value = "movieId") long movieId
+		@PathVariable(value = "movieId") long movieId,
+		@RequestParam(value = "v", required = false) Integer v
 	) {
-		return String.valueOf(movieId);
+		return String.valueOf(movieId + " " + v);
 	}
 
 	@PostMapping("/movies")
