@@ -1,16 +1,15 @@
 package com.example.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Movie {
 
-	private final long id;
-	private final String name;
-	private final Integer productionYear;
-
+	private long id;
+	private String name;
+	private Integer productionYear;
 }
