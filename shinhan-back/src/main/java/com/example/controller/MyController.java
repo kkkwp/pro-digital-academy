@@ -9,8 +9,12 @@ import com.example.service.MyService;
 @RestController
 public class MyController {
 
+	private final MyService myService;
+	private final MyConfig myConfig;
+
 	@Autowired
-	private MyService myService;
-	@Autowired
-	private MyConfig myConfig;
+	public MyController(MyService myService, MyConfig myConfig) {
+		this.myService = myService;
+		this.myConfig = myConfig;
+	}
 }
