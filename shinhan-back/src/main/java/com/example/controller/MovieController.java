@@ -8,15 +8,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.domain.Movie;
+import com.example.service.MovieService;
+
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 
 @Tag(name = "movie controller")
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class MovieController {
+
+	private final MovieService movieService;
 
 	@Deprecated(since = "v2 사용하세요.")
 	@GetMapping("/v1/movies")
@@ -25,16 +31,15 @@ public class MovieController {
 	}
 
 	@GetMapping("/v2/movies")
-	public List<String> getmovies() {
-		return List.of("test");
+	public List<Movie> getMovies() {
+		return List.of(new Movie(1, "오펜하이머", 2023));
 	}
 
 	@GetMapping("/v1/movies/{movieId}")
-	public String getMovie(
-		@PathVariable(value = "movieId") long movieId,
-		@RequestParam(value = "v", required = false) Integer v
+	public Movie getMovie(
+		@PathVariable(value = "movieId") long movieId
 	) {
-		return String.valueOf(movieId + " " + v);
+		return new Movie(1, "오펜하이머", 2023);
 	}
 
 	@PostMapping("/v1/movies")
