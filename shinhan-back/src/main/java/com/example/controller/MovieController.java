@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.common.Response;
-import com.example.domain.entity.Movie;
 import com.example.domain.request.MovieRequest;
 import com.example.domain.response.MovieResponse;
 import com.example.service.MovieService;
@@ -34,7 +33,7 @@ public class MovieController {
 	}
 
 	@GetMapping("/v1/movies/{movieId}")
-	public Movie getMovie(
+	public MovieResponse getMovie(
 		@PathVariable(value = "movieId") long movieId
 	) {
 		return movieService.getMovie(movieId);

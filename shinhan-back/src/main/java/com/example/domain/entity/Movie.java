@@ -10,10 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "movie")
 @Getter
+@NoArgsConstructor
 public class Movie {
 
 	@Id
@@ -27,5 +29,10 @@ public class Movie {
 	private int productionYear;
 
 	@Column(name = "created_at")
-	private LocalDateTime createdAt;
+	private LocalDateTime createdAt = LocalDateTime.now();
+
+	public Movie(String name, int productionYear) {
+		this.name = name;
+		this.productionYear = productionYear;
+	}
 }
