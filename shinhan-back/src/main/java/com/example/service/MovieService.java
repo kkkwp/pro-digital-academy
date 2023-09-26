@@ -21,8 +21,12 @@ public class MovieService {
 	private final LogService logService;
 	private final LogRepository logRepository;
 
+	@Transactional
 	public List<MovieResponse> getMovies() {
-		return List.of();
+		List<Movie> movies = movieRepository.findAll();
+		return movies.stream()
+			.map(MovieResponse::of)
+			.toList();
 	}
 
 	@Transactional
