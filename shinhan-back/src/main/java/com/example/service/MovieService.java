@@ -50,6 +50,10 @@ public class MovieService {
 		Movie movie = movieRepository.findById(movieId).orElseThrow();
 	}
 
+	@Transactional
 	public void deleteMovie(long movieId) {
+		Movie movie = movieRepository.findById(movieId)
+			.orElseThrow();
+		movieRepository.delete(movie);
 	}
 }
