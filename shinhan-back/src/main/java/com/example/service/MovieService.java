@@ -2,13 +2,13 @@ package com.example.service;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.entity.Movie;
 import com.example.domain.request.MovieRequest;
 import com.example.domain.response.MovieResponse;
+import com.example.repository.LogRepository;
 import com.example.repository.MovieRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -19,6 +19,7 @@ public class MovieService {
 
 	private final MovieRepository movieRepository;
 	private final LogService logService;
+	private final LogRepository logRepository;
 
 	public List<MovieResponse> getMovies() {
 		return List.of();
@@ -35,10 +36,14 @@ public class MovieService {
 		Movie movie = new Movie(movieRequest.getName(), movieRequest.getProductionYear());
 		movieRepository.save(movie);
 		logService.saveLog();
-		throw new RuntimeException("강제 에러");
 	}
 
+	@Transactional
 	public void updateMovie(long movieId, MovieRequest movieRequest) {
+		Movie movie = movieRepository.findById(movieId).orElseThrow();
+		movie.setName("변경1");
+		movie.setName("변경2");
+		movie.setName("변경3");
 	}
 
 	public void deleteMovie(long movieId) {
