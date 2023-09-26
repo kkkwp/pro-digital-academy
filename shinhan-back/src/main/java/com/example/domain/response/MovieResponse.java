@@ -14,8 +14,14 @@ public class MovieResponse {
 	private final long id;
 	private final String name;
 	private final Integer productionYear;
+	private final String directorName;
 
 	public static MovieResponse of(Movie movie) {
-		return new MovieResponse(movie.getId(), movie.getName(), movie.getProductionYear());
+		return new MovieResponse(
+			movie.getId(),
+			movie.getName(),
+			movie.getProductionYear(),
+			movie.getDirector().getName()
+		);
 	}
 }

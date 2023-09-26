@@ -25,6 +25,7 @@ public class MovieService {
 		return List.of();
 	}
 
+	@Transactional
 	public MovieResponse getMovie(long movieId) {
 		Movie movie = movieRepository.findById(movieId)
 			.orElseThrow();
@@ -41,9 +42,6 @@ public class MovieService {
 	@Transactional
 	public void updateMovie(long movieId, MovieRequest movieRequest) {
 		Movie movie = movieRepository.findById(movieId).orElseThrow();
-		movie.setName("변경1");
-		movie.setName("변경2");
-		movie.setName("변경3");
 	}
 
 	public void deleteMovie(long movieId) {
