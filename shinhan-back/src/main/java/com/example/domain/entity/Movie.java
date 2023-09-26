@@ -3,6 +3,7 @@ package com.example.domain.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,7 +41,12 @@ public class Movie {
 	@JoinColumn(name = "director_id")
 	private Director director;
 
-	@OneToMany(mappedBy = "movie", fetch = FetchType.LAZY)
+	@OneToMany(
+		mappedBy = "movie",
+		fetch = FetchType.LAZY,
+		cascade = CascadeType.ALL,
+		orphanRemoval = true
+	)
 	private List<Actor> actors;
 
 	public Movie(String name, int productionYear) {
