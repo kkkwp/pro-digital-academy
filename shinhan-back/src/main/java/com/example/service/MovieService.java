@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class MovieService {
 
 	private final MovieRepository movieRepository;
+	private final LogService logService;
 
 	public List<MovieResponse> getMovies() {
 		return List.of();
@@ -33,6 +34,7 @@ public class MovieService {
 	public void createMovie(MovieRequest movieRequest) {
 		Movie movie = new Movie(movieRequest.getName(), movieRequest.getProductionYear());
 		movieRepository.save(movie);
+		logService.saveLog();
 	}
 
 	public void updateMovie(long movieId, MovieRequest movieRequest) {
