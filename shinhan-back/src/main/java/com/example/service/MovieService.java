@@ -24,7 +24,8 @@ public class MovieService {
 	@Transactional
 	public List<MovieResponse> getMovies() {
 		// List<Movie> movies = movieRepository.find();
-		List<Movie> movies = movieRepository.findAllJpqlFetch();
+		// List<Movie> movies = movieRepository.findAllJpqlFetch();
+		List<Movie> movies = movieRepository.findByProductionYear(2010);
 		return movies.stream()
 			.map(MovieResponse::of)
 			.toList();

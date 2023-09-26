@@ -11,4 +11,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
 	@Query("select distinct m from Movie m left join fetch m.actors a left join fetch m.director d")
 	List<Movie> findAllJpqlFetch();
+
+	List<Movie> findByProductionYear(int productionYear);
 }
