@@ -23,7 +23,8 @@ public class MovieService {
 
 	@Transactional
 	public List<MovieResponse> getMovies() {
-		List<Movie> movies = movieRepository.findAll();
+		// List<Movie> movies = movieRepository.find();
+		List<Movie> movies = movieRepository.findAllJpqlFetch();
 		return movies.stream()
 			.map(MovieResponse::of)
 			.toList();
