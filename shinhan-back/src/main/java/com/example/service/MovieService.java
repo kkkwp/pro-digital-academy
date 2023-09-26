@@ -2,14 +2,14 @@ package com.example.service;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
 import com.example.domain.entity.Movie;
 import com.example.domain.request.MovieRequest;
 import com.example.domain.response.MovieResponse;
+import com.example.repository.MovieRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,23 +17,22 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MovieService {
 
-	private final EntityManagerFactory emf;
+	private final MovieRepository movieRepository;
 
 	public List<MovieResponse> getMovies() {
 		return List.of();
 	}
 
 	public MovieResponse getMovie(long movieId) {
-		EntityManager em = emf.createEntityManager();
-		Movie movie = em.find(Movie.class, movieId);
+		Movie movie = movieRepository.findById(movieId)
+			.orElseThrow();
 		return MovieResponse.of(movie);
 	}
 
+	@Transactional
 	public void createMovie(MovieRequest movieRequest) {
-		EntityManager em = emf.createEntityManager();
 		Movie movie = new Movie(movieRequest.getName(), movieRequest.getProductionYear());
-		em.persist(movie);
-		em.flush();
+		movieRepository.save(movie);
 	}
 
 	public void updateMovie(long movieId, MovieRequest movieRequest) {
