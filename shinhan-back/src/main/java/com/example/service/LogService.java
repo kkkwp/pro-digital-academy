@@ -1,8 +1,8 @@
 package com.example.service;
 
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.entity.Log;
 import com.example.repository.LogRepository;
@@ -15,7 +15,7 @@ public class LogService {
 
 	private final LogRepository logRepository;
 
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void saveLog() {
 		logRepository.save(new Log());
 	}
