@@ -4,8 +4,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import com.example.config.MyConfig;
-import com.example.config.MyConfigProto;
+import com.example.common.config.MyConfig;
+import com.example.common.config.MyConfigProto;
 
 import lombok.RequiredArgsConstructor;
 

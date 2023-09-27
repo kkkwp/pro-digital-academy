@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.config.MyConfig;
+import com.example.common.config.MyConfig;
 import com.example.service.MyService;
 
 @RestController
