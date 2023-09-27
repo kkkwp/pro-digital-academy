@@ -15,15 +15,21 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 
-		return httpSecurity
+		httpSecurity
 			.csrf().disable()
 			.formLogin()
 			.defaultSuccessUrl("/home")
 			.and()
 			.logout()
 			.logoutUrl("/logout")
-			.logoutSuccessUrl("/login")
-			.and()
+			.logoutSuccessUrl("/login");
+
+		return httpSecurity
+			.authorizeRequests(auth ->
+				auth.antMatchers("/api/v1/user/join", "/login").permitAll()
+					.antMatchers("/admin").hasRole("ADMIN")
+					.antMatchers("/manager").access("hasRole('ADMIN') or hasRole('MANAGER')")
+					.anyRequest().authenticated())
 			.build();
 	}
 

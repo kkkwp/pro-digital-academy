@@ -27,4 +27,14 @@ public class UserController {
 	public String home() {
 		return "어서와^^ 로그인 성공했네~ ㅊㅋㅊㅋ";
 	}
+
+	@GetMapping("/admin")
+	public String admin() {
+		return "어드민만 접속 가능한 화면에 용케 들어왔네~";
+	}
+
+	@GetMapping("/manager")
+	public String manager() {
+		return "매니저까지 접속 가능한 화면에 용케 들어왔네~";
+	}
 }
