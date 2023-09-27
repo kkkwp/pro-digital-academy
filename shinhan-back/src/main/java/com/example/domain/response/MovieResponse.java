@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MovieResponse {
 
-	private final long id;
+	private final Long id;
 	private final String name;
 	private final Integer productionYear;
 	private final String directorName;

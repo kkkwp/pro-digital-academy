@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "movie")
@@ -29,6 +30,7 @@ public class Movie {
 	private Long id;
 
 	@Column(name = "name")
+	@Setter
 	private String name;
 
 	@Column(name = "production_year")
@@ -39,6 +41,7 @@ public class Movie {
 
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "director_id")
+	@Setter
 	private Director director;
 
 	@OneToMany(
@@ -47,6 +50,7 @@ public class Movie {
 		cascade = CascadeType.ALL,
 		orphanRemoval = true
 	)
+	@Setter
 	private List<Actor> actors;
 
 	public Movie(String name, int productionYear) {
